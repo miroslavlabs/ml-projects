@@ -1,0 +1,15 @@
+services:
+  neo4j:
+    image: harbor-repo.vmware.com/dockerhub-proxy-cache/neo4j:5.15-community
+    ports:
+      - 7474:7474
+      - 7687:7687
+    environment:
+     - NEO4J_AUTH=neo4j/password
+     - NEO4J_PLUGINS=["apoc", "graph-algorithms", "graph-data-science"]
+    volumes:
+      - ./data:/data
+      - ./logs:/logs
+      - ./import:/var/lib/neo4j/import
+      - ./plugins:/plugins
+  
